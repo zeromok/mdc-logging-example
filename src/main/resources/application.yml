@@ -1,0 +1,52 @@
+# 기본 설정
+spring:
+  profiles:
+    active: mdc-filter  # 기본 프로파일 (변경 가능)
+
+logging:
+  level:
+    io.github.zeromok: DEBUG
+
+---
+# 스레드 이름으로 추적 (실패 케이스)
+spring:
+  config:
+    activate:
+      on-profile: thread-name
+
+logging:
+  level:
+    io.github.zeromok: DEBUG
+
+---
+# AOP에서 MDC 관리 (실패 케이스)
+spring:
+  config:
+    activate:
+      on-profile: mdc-aspect
+
+logging:
+  level:
+    io.github.zeromok: DEBUG
+
+---
+# Interceptor에서 MDC 관리 (제한적)
+spring:
+  config:
+    activate:
+      on-profile: mdc-interceptor
+
+logging:
+  level:
+    io.github.zeromok: DEBUG
+
+---
+# Filter에서 MDC 관리 (최종 해결책)
+spring:
+  config:
+    activate:
+      on-profile: mdc-filter
+
+logging:
+  level:
+    io.github.zeromok: DEBUG
